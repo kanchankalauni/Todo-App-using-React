@@ -12,9 +12,14 @@ function App() {
     }
 
     function deleteTodo(i) {
-        let newArr = [...allTodos]              //Method 2
+        let newArr = [...allTodos]              //Delete todo from UI
         newArr.splice(i,1)
+        saveTodoLocalStore(newArr)              //Updated Delete todo to Local Storage(Mothod 1)
         setAllTodos(newArr)
+
+        // allTodos.splice(i,1)                 //Delete todo from Local Storage(Methoda 2)
+        // saveTodoLocalStore(allTodos)
+        // getTodoFromLocalStore()
     }
 
     function saveTodoLocalStore(todo) {
