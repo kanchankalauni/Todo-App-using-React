@@ -10,6 +10,12 @@ function App() {
         setAllTodos([...allTodos, singleTodo])
     }
 
+    function deleteTodo(i) {
+        // console.log(i)
+        allTodos.splice(i,1)
+        setAllTodos(allTodos)
+    }
+
     return (
         <>
             <div>
@@ -30,7 +36,7 @@ function App() {
                             <h1>{data.title}</h1>
                             <p>{data.desc}</p>
                             <button>Edit</button>
-                            <button>Remove</button>
+                            <button onClick={() => deleteTodo(i)}>Remove</button>
                         </div>
                     ))
                 }
