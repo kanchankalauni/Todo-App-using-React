@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function App() {
 
@@ -20,6 +20,16 @@ function App() {
     function saveTodoLocalStore(todo) {
         localStorage.setItem("todos", JSON.stringify(todo))
     }
+
+    function getTodoFromLocalStore() {
+        let data = JSON.parse(localStorage.getItem("todos")) || []
+        console.log(data)
+        setAllTodos(data)
+    }
+
+    useEffect(() => {
+        getTodoFromLocalStore()
+    }, [])
 
     return (
         <>
