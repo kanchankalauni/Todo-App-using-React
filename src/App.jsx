@@ -8,12 +8,17 @@ function App() {
     function handleAddTodo() {
         // setAllTodos(prevValue => [...prevValue, singleTodo])
         setAllTodos([...allTodos, singleTodo])
+        saveTodoLocalStore([...allTodos, singleTodo])
     }
 
     function deleteTodo(i) {
         // console.log(i)
         allTodos.splice(i,1)
         setAllTodos(allTodos)
+    }
+
+    function saveTodoLocalStore(todo) {
+        localStorage.setItem("todos", JSON.stringify(todo))
     }
 
     return (
@@ -31,7 +36,7 @@ function App() {
             <div>
                 {
                     allTodos.map((data, i) => (
-                        <div key={i} style={{backgroundColor : "lightgray"}}>
+                        <div key={i} style={{backgroundColor : "lightgray", padding : "20px", margin : "20px"}}>
                             <p>{i+1}</p>
                             <h1>{data.title}</h1>
                             <p>{data.desc}</p>
