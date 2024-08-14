@@ -12,9 +12,9 @@ function App() {
     }
 
     function deleteTodo(i) {
-        // console.log(i)
-        allTodos.splice(i,1)
-        setAllTodos(allTodos)
+        let newArr = [...allTodos]              //Method 2
+        newArr.splice(i,1)
+        setAllTodos(newArr)
     }
 
     function saveTodoLocalStore(todo) {
@@ -23,7 +23,6 @@ function App() {
 
     function getTodoFromLocalStore() {
         let data = JSON.parse(localStorage.getItem("todos")) || []
-        console.log(data)
         setAllTodos(data)
     }
 
