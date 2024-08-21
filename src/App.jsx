@@ -12,6 +12,7 @@ function App() {
         if (isEditing) {
             const updatedTodo = allTodos.map((todo,i) => updatedIndex == i ? singleTodo : todo)
             setAllTodos([...updatedTodo])
+            saveTodoLocalStore([...updatedTodo])
             isEditing(false)
             setUpdatedIndex(null)
         } else {
