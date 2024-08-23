@@ -9,16 +9,21 @@ function App() {
 
     function handleAddTodo() {
         // setAllTodos(prevValue => [...prevValue, singleTodo])
+        if (!singleTodo.title || !singleTodo.desc) {
+            return
+        }
+        
         if (isEditing) {
             const updatedTodo = allTodos.map((todo,i) => updatedIndex == i ? singleTodo : todo)
             setAllTodos([...updatedTodo])
             saveTodoLocalStore([...updatedTodo])
-            isEditing(false)
+            setIsEditing(false)
             setUpdatedIndex(null)
         } else {
             setAllTodos([...allTodos, singleTodo])
             saveTodoLocalStore([...allTodos, singleTodo])
         }
+        setSingleTodo({title : "", desc : ""})
     }
 
     function deleteTodo(i) {
