@@ -57,31 +57,40 @@ function App() {
     }, [])
 
     return (
-        <>
-            <div>
-                <h1>Todo App</h1>
-                <input type="text" value={singleTodo.title} placeholder="title" onChange={(e) => setSingleTodo(prevValue => ({...prevValue, title : e.target.value}))}/>
+        <div className="bg-lime-200 max-w-screen min-h-screen text-center">
+            <h1 className="text-5xl pt-12">Todo App</h1>
+            <div className="mt-10">
+                <input className="text-2xl px-4 py-2 focus:outline-none capitalize rounded-md" type="text" value={singleTodo.title} placeholder="title" onChange={(e) => setSingleTodo(prevValue => ({...prevValue, title : e.target.value}))}/>
                 <br />
                 <br />
-                <input type="text" value={singleTodo.desc} placeholder="description" onChange={(e) => setSingleTodo(prevValue => ({...prevValue, desc : e.target.value}))}/>
+                <input className="text-2xl px-4 py-2 focus:outline-none capitalize rounded-md" type="text" value={singleTodo.desc} placeholder="description" onChange={(e) => setSingleTodo(prevValue => ({...prevValue, desc : e.target.value}))}/>
                 <br />
                 <br />
-                <button onClick={handleAddTodo}>{isEditing ? "Update Todo" : "Add Todo"}</button>
+                <button className="text-2xl bg-blue-600 text-white py-2 px-[6.3rem] rounded-md" onClick={handleAddTodo}>{isEditing ? "Update Todo" : "Add Todo"}</button>
             </div>
-            <div>
+            <div className="w-[100%] sm:w-[70%] md:w-[60%] lg:w-[55%] mx-auto py-10">
                 {
                     allTodos.map((data, i) => (
-                        <div key={i} style={{backgroundColor : "lightgray", padding : "20px", margin : "20px"}}>
-                            <p>{i+1}</p>
-                            <h1>{data.title}</h1>
-                            <p>{data.desc}</p>
-                            <button onClick={() => editTodo(i)}>Edit</button>
-                            <button onClick={() => deleteTodo(i)}>Remove</button>
+                        <div key={i} className="bg-purple-500/20 m-4 p-6 flex flex-col justify-between items-start gap-1 rounded-lg">
+                            <div className="flex flex-col sm:flex-row justify-between w-full">
+                                <div className="flex gap-6 w-[70%]">
+                                    <p className="text-4xl">{i+1}.</p>
+                                    <div className="flex flex-col items-start gap-1">
+                                        <h1 className="capitalize text-4xl font-medium">{data.title}</h1>
+                                        
+                                    </div>
+                                </div>
+                                <div className="flex gap-6">
+                                    <button className="text-2xl bg-green-600 text-white px-6 py-2 rounded-md" onClick={() => editTodo(i)}><i class="fi fi-sr-pen-circle"></i></button>
+                                    <button className="text-2xl bg-red-600 text-white px-6 py-2 rounded-md" onClick={() => deleteTodo(i)}><i class="fi fi-rs-trash"></i></button>
+                                </div>
+                            </div>
+                            <p className="max-w-full text-wrap text-xl text-gray-700/65 break-words line-clamp-3">{data.desc}</p>
                         </div>
                     ))
                 }
             </div>
-        </>
+        </div>
     )
 }
 
